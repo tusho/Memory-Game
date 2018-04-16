@@ -44,6 +44,9 @@ function resetStars() {
 //Restart button to run multiple functions for starting over
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', function() {
+  clicks = 0;
+  cardContentFirst = 0;
+  cardContentSecond = 0;
   changeDecks();
   resetStars();
   closeCards();
@@ -58,19 +61,20 @@ function closeCards () {
 }
 
 //Card function
-let cardsOpenShow = document.getElementsByClassName('card open show');
 
-function showCard (e) {
+function showCards (e) {
   e.target.className = 'card open show';
 }
 
 function matchCards () {
+  let cardsOpenShow = document.getElementsByClassName('card open show');
   for (m=0; m < cardsOpenShow.length; m++) {
         cardsOpenShow[m].className = 'card match';
   }
 }
 
 function hideCards () {
+  let cardsOpenShow = document.getElementsByClassName('card open show');
   for (n=0; n < cardsOpenShow.length; n++) {
         cardsOpenShow[n].className = 'card';
   }
@@ -88,24 +92,26 @@ myDeck.addEventListener('click', function(e) {
       clicks += 1;
 
       if (clicks%2 === 1) {
-        showCard(e);
+        showCards(e);
         cardContentFirst = e.target.innerHTML;
         console.log(clicks);
 
       } else {
+        showCards(e);
         cardContentSecond = e.target.innerHTML;
 
           if (cardContentFirst === cardContentSecond) {
-            showCard(e);
+
             matchCards();
             console.log('they match');
 
           } else {
-            showCard(e);
+
             console.log('they don\'t match');
+            hideCards();
 
           }
-          hideCards();
+
       }
 
     }
