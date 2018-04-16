@@ -57,15 +57,62 @@ function closeCards () {
     }
 }
 
+//Card function
+let cardsOpenShow = document.getElementsByClassName('card open show');
+
+function showCard (e) {
+  e.target.className = 'card open show';
+}
+
+function matchCards () {
+  for (m=0; m < cardsOpenShow.length; m++) {
+        cardsOpenShow[m].className = 'card match';
+  }
+}
+
+function hideCards () {
+  for (n=0; n < cardsOpenShow.length; n++) {
+        cardsOpenShow[n].className = 'card';
+  }
+}
+
 //Click Cards
 const myDeck = document.getElementById('deck');
+var clicks = 0; //counter
+let cardContentFirst = 0;
+let cardContentSecond = 0;
 
 myDeck.addEventListener('click', function(e) {
-if (e.target.nodeName === 'LI') {
-//   e.target.style.color = 'orange';
-    e.target.className = 'card open show';
-}
+
+    if (e.target.nodeName === 'LI') {
+      clicks += 1;
+
+      if (clicks%2 === 1) {
+        showCard(e);
+        cardContentFirst = e.target.innerHTML;
+        console.log(clicks);
+
+      } else {
+        cardContentSecond = e.target.innerHTML;
+
+          if (cardContentFirst === cardContentSecond) {
+            showCard(e);
+            matchCards();
+            console.log('they match');
+
+          } else {
+            showCard(e);
+            console.log('they don\'t match');
+
+          }
+          hideCards();
+      }
+
+    }
+
 })
+
+
 
 
 //Run a shuffle once document is loaded
