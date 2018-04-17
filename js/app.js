@@ -60,27 +60,28 @@ function closeCards () {
     }
 }
 
-//Card function
+//Funcitons to show, close cards or change color of matched classes
+let cardsOpenShow = document.getElementsByClassName('card open show');
 
 function showCards (e) {
   e.target.className = 'card open show';
 }
 
 function matchCards () {
-  let cardsOpenShow = document.getElementsByClassName('card open show');
-  for (m=0; m < cardsOpenShow.length; m++) {
-        cardsOpenShow[m].className = 'card match';
-  }
+  Array.from(document.getElementsByClassName('card open show')).forEach(function(item) {
+    item.className = 'card match';
+    });
 }
+
 
 function hideCards () {
-  let cardsOpenShow = document.getElementsByClassName('card open show');
-  for (n=0; n < cardsOpenShow.length; n++) {
-        cardsOpenShow[n].className = 'card';
-  }
+  Array.from(document.getElementsByClassName('card open show')).forEach(function(item) {
+   item.classList.add('animation');
+   setTimeout(function(){item.className = 'card';}, 2000);
+    });
 }
 
-//Click Cards
+//Event Listeners for clicking classes
 const myDeck = document.getElementById('deck');
 var clicks = 0; //counter
 let cardContentFirst = 0;
@@ -94,7 +95,7 @@ myDeck.addEventListener('click', function(e) {
       if (clicks%2 === 1) {
         showCards(e);
         cardContentFirst = e.target.innerHTML;
-        console.log(clicks);
+        var clicks += clicks;
 
       } else {
         showCards(e);
@@ -117,8 +118,6 @@ myDeck.addEventListener('click', function(e) {
     }
 
 })
-
-
 
 
 //Run a shuffle once document is loaded
