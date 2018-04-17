@@ -95,7 +95,6 @@ myDeck.addEventListener('click', function(e) {
       if (clicks%2 === 1) {
         showCards(e);
         cardContentFirst = e.target.innerHTML;
-        var clicks += clicks;
 
       } else {
         showCards(e);
@@ -121,6 +120,6 @@ myDeck.addEventListener('click', function(e) {
 
 
 //Run a shuffle once document is loaded
-document.onload = function () {
+window.onload = function () {
   changeDecks();
 }
