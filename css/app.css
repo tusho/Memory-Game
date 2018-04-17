@@ -81,14 +81,14 @@ h1 {
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes myRotation {
-    from {transform: rotateY(0);}
-    to {transform: rotateY(360deg);}
+    from {transform: rotateY(0); background: #02b3e4;}
+    to {transform: rotateY(360deg); background: red;}
 }
 
 /* Standard syntax */
 @keyframes myRotation {
-    from {transform: rotateY(0);}
-    to {transform: rotateY(360deg);}
+  from {transform: rotateY(0); background: #02b3e4;}
+  to {transform: rotateY(360deg); background: red;}
 }
 
 .deck .card.show {

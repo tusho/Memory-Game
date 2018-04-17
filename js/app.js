@@ -31,13 +31,31 @@ function changeDecks() {
 }
 
 
-//Reset the Star colors
+//Change colors of Stars
 const myStars = document.getElementById('stars').getElementsByTagName('i');
 
 function resetStars() {
   for (let k=0; k < myStars.length; k++) {
-    myStars[k].style.color = 'black';
+    myStars[k].style.color = 'orange';
   }
+}
+
+function changeStars () {
+  let successfulClicks = clicks - matchingCards;
+  if (successfulClicks >= 10 && successfulClicks < 20) {
+    myStars[2].style.color = 'black';
+  } else if (successfulClicks >=20 && successfulClicks < 30) {
+    myStars[1].style.color = 'black'
+  } else if (successfulClicks >=30) {
+    myStars[0].style.color = 'black'
+  }
+}
+
+//Funciton to count Moves
+const myMoves = document.getElementById('moves');
+
+function countMoves () {
+  moves.textContent = clicks;
 }
 
 
@@ -47,14 +65,14 @@ restart.addEventListener('click', function() {
   clicks = 0;
   cardContentFirst = 0;
   cardContentSecond = 0;
+  countMoves();
   changeDecks();
   resetStars();
-  closeCards();
+  closeAllCards();
 });
 
-
-//Function to open Cards
-function closeCards () {
+//Function to reset / close all Cards
+function closeAllCards () {
     for (l=0; l < myDeck.children.length; l++) {
       myDeck.children[l].className = 'card';
     }
@@ -62,6 +80,7 @@ function closeCards () {
 
 //Funcitons to show, close cards or change color of matched classes
 let cardsOpenShow = document.getElementsByClassName('card open show');
+let matchingCards = 0;
 
 function showCards (e) {
   e.target.className = 'card open show';
@@ -71,8 +90,11 @@ function matchCards () {
   Array.from(document.getElementsByClassName('card open show')).forEach(function(item) {
     item.className = 'card match';
     });
+  matchingCards += 2;
+  if (matchingCards === 16) {
+    setTimeout(function(){alert('you won');}, 2000);
+  }
 }
-
 
 function hideCards () {
   Array.from(document.getElementsByClassName('card open show')).forEach(function(item) {
@@ -91,6 +113,8 @@ myDeck.addEventListener('click', function(e) {
 
     if (e.target.nodeName === 'LI') {
       clicks += 1;
+      countMoves();
+      changeStars();
 
       if (clicks%2 === 1) {
         showCards(e);
@@ -122,4 +146,5 @@ myDeck.addEventListener('click', function(e) {
 //Run a shuffle once document is loaded
 window.onload = function () {
   changeDecks();
+  resetStars();
 }
