@@ -33,6 +33,7 @@ function changeDecks() {
 
 //Change colors of Stars
 const myStars = document.getElementById('stars').getElementsByTagName('i');
+let starCount = 3;
 
 function resetStars() {
   for (let k=0; k < myStars.length; k++) {
@@ -44,14 +45,17 @@ function changeStars () {
   let successfulClicks = clicks - matchingCards;
   if (successfulClicks >= 10 && successfulClicks < 20) {
     myStars[2].style.color = 'black';
+    starCount = 2;
   } else if (successfulClicks >=20 && successfulClicks < 30) {
     myStars[1].style.color = 'black'
+    starCount = 1;
   } else if (successfulClicks >=30) {
     myStars[0].style.color = 'black'
+    starCount = 0;
   }
 }
 
-//Funciton to count Moves
+//Function to count Moves
 const myMoves = document.getElementById('moves');
 
 function countMoves () {
@@ -65,6 +69,7 @@ restart.addEventListener('click', function() {
   clicks = 0;
   cardContentFirst = 0;
   cardContentSecond = 0;
+  starCount = 3;
   countMoves();
   changeDecks();
   resetStars();
@@ -78,7 +83,7 @@ function closeAllCards () {
     }
 }
 
-//Funcitons to show, close cards or change color of matched classes
+//Functions to show, close cards or change color of matched classes
 let cardsOpenShow = document.getElementsByClassName('card open show');
 let matchingCards = 0;
 
@@ -92,7 +97,7 @@ function matchCards () {
     });
   matchingCards += 2;
   if (matchingCards === 16) {
-    setTimeout(function(){alert('you won');}, 2000);
+    setTimeout(function(){openPopup();}, 1000);
   }
 }
 
@@ -103,7 +108,7 @@ function hideCards () {
     });
 }
 
-//Event Listeners for clicking classes
+//Event Listener for clicking the cards
 const myDeck = document.getElementById('deck');
 var clicks = 0; //counter
 let cardContentFirst = 0;
@@ -142,6 +147,32 @@ myDeck.addEventListener('click', function(e) {
 
 })
 
+
+
+
+//Modal Popup
+let modal = document.getElementById('myModal');
+let usedMoves = document.getElementById('used-moves');
+let usedStars = document.getElementById('used-stars');
+let winButton = document.getElementsByTagName('button')[0];
+
+function openPopup() {
+    modal.style.display = "block";
+    usedMoves.textContent = clicks;
+    usedStars.textContent = starCount;
+}
+
+winButton.addEventListener('click', function() {
+  clicks = 0;
+  cardContentFirst = 0;
+  cardContentSecond = 0;
+  starCount = 3;
+  countMoves();
+  changeDecks();
+  resetStars();
+  closeAllCards();
+  modal.style.display = "none";
+})
 
 //Run a shuffle once document is loaded
 window.onload = function () {

@@ -101,9 +101,9 @@ h1 {
     font-size: 33px;
 }
 
-/*
- * Styles for the Score Panel
- */
+
+ /* Styles for the Score Panel */
+
 
 .score-panel {
     text-align: left;
@@ -126,4 +126,70 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+
+
+
+/* Modal Popup */
+
+#myModal {
+  display: none;
+}
+
+.modal-content {
+    position: absolute;
+    background: linear-gradient(160deg, green 0%, white 100%);
+    font-family: 'Coda', cursive;
+    text-align: center;
+    top: 30%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: #fefefe;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 10px 10px 10px;
+    border-radius: 15px;
+    border: solid 10px white;
+    -webkit-animation-name: myWin; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+    animation-name: myWin;
+    animation-duration: 2s;
+}
+
+.checkbox {
+  padding-top: 5px;
+  height: 25%;
+}
+.modal-content h1 {
+    font-weight: bold;
+}
+
+.win-button {
+  font-family: 'Coda', cursive;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background: #81D8D0;
+  cursor: pointer;
+}
+
+.win-button:hover {
+  background: #66CDAA;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes myWin {
+    from {transform: rotateY(0);}
+    to {transform: rotateY(360deg);}
+}
+
+/* Standard syntax */
+@keyframes myWin {
+  from {transform: rotateY(0);}
+  to {transform: rotateY(360deg);}
 }
