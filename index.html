@@ -23,10 +23,11 @@
         	</ul>
 
         	<span class="moves" id="moves">0</span> Moves
-
-            <div class="restart">
+          <p>Time:  <span class="count-time" id="count-time"></span></p>
+          <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
+
         </section>
 
         <ul class="deck" id="deck">
@@ -88,7 +89,8 @@
       <div class="modal-content">
         <img src='img/check.svg' alt='checkbox' class='checkbox'>
         <h1>Congratulations, you won!</h1>
-        <p>With <span id="used-moves"></span> moves and a star count of <span id="used-stars"></span>.</p>
+        <p>You finished this game after <span id="used-moves"></span> moves and with a star count of <span id="used-stars"></span>.</p>
+        <p>This game took you <span id="finish-time"></span>.</p>
         <button type="button" class="win-button" id="win-button">Play Again</button>
       </div>
 

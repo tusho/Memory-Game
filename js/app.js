@@ -1,7 +1,6 @@
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -9,7 +8,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -74,6 +72,7 @@ restart.addEventListener('click', function() {
   changeDecks();
   resetStars();
   closeAllCards();
+  resetTimer();
 });
 
 //Function to reset / close all Cards
@@ -97,7 +96,9 @@ function matchCards () {
     });
   matchingCards += 2;
   if (matchingCards === 16) {
-    setTimeout(function(){openPopup();}, 1000);
+    setTimeout(function(){
+      openPopup();
+    }, 1000);
   }
 }
 
@@ -110,7 +111,7 @@ function hideCards () {
 
 //Event Listener for clicking the cards
 const myDeck = document.getElementById('deck');
-var clicks = 0; //counter
+let clicks = 0;
 let cardContentFirst = 0;
 let cardContentSecond = 0;
 
@@ -148,21 +149,22 @@ myDeck.addEventListener('click', function(e) {
 })
 
 
-
-
 //Modal Popup
 let modal = document.getElementById('myModal');
 let usedMoves = document.getElementById('used-moves');
 let usedStars = document.getElementById('used-stars');
-let winButton = document.getElementsByTagName('button')[0];
+let replayButton = document.getElementsByTagName('button')[0];
+let finishTime = document.getElementById('finish-time');
 
 function openPopup() {
+    let finishCounter = document.getElementById("count-time").innerHTML;
     modal.style.display = "block";
     usedMoves.textContent = clicks;
     usedStars.textContent = starCount;
+    finishTime.textContent = finishCounter;
 }
 
-winButton.addEventListener('click', function() {
+replayButton.addEventListener('click', function() {
   clicks = 0;
   cardContentFirst = 0;
   cardContentSecond = 0;
@@ -171,6 +173,7 @@ winButton.addEventListener('click', function() {
   changeDecks();
   resetStars();
   closeAllCards();
+  resetTimer();
   modal.style.display = "none";
 })
 
@@ -178,4 +181,28 @@ winButton.addEventListener('click', function() {
 window.onload = function () {
   changeDecks();
   resetStars();
+  resetTimer();
+}
+
+
+//Timer Function
+let countDownDate = localStorage.getItem('startDate');
+if (countDownDate) {
+    countDownDate = new Date(countDownDate);
+  } else {
+      countDownDate = new Date();
+      localStorage.setItem('startDate', countDownDate);
+}
+
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = now - countDownDate.getTime();
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("count-time").innerHTML = minutes + "m " + seconds + "s ";
+}, 1000);
+
+function resetTimer() {
+  countDownDate = new Date();
+  localStorage.setItem('startDate', countDownDate);
 }
