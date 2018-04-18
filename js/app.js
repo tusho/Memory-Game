@@ -1,14 +1,13 @@
 // Shuffle function
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    return array;
+  while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+  }
+  return array;
 }
 
 
@@ -44,9 +43,9 @@ function changeStars () {
     myStars[2].style.color = 'black';
     starCount = 2;
   } else if (successfulClicks >=28) {
-    myStars[1].style.color = 'black'
-    starCount = 1;
-  }
+      myStars[1].style.color = 'black'
+      starCount = 1;
+    }
 }
 
 
@@ -76,9 +75,9 @@ restart.addEventListener('click', function() {
 
 //Function to reset / close all Cards
 function closeAllCards () {
-    for (l=0; l < myDeck.children.length; l++) {
-      myDeck.children[l].className = 'card';
-    }
+  for (l=0; l < myDeck.children.length; l++) {
+    myDeck.children[l].className = 'card';
+  }
 }
 
 
@@ -105,7 +104,9 @@ function matchCards () {
 function hideCards () {
   Array.from(document.getElementsByClassName('card open show')).forEach(function(item) {
    item.classList.add('animation');
-   setTimeout(function(){item.className = 'card';}, 1000);
+   setTimeout(function(){
+     item.className = 'card';
+    }, 1000);
     });
 }
 
@@ -117,53 +118,39 @@ let cardContentFirst = 0;
 let cardContentSecond = 0;
 
 myDeck.addEventListener('click', function(e) {
-
-    if (e.target.nodeName === 'LI') {
-      clicks += 1;
-      changeStars();
-
-      if (clicks%2 === 1) {
-        showCards(e);
-        cardContentFirst = e.target.innerHTML;
-
-      } else {
-
-        showCards(e);
-        countMoves();
-        cardContentSecond = e.target.innerHTML;
-
-          if (cardContentFirst === cardContentSecond) {
-
-            matchCards();
-            console.log('they match');
-
-          } else {
-
-            console.log('they don\'t match');
-            hideCards();
-
+  if (e.target.nodeName === 'LI') {
+    clicks += 1;
+    changeStars();
+    if (clicks%2 === 1) {
+      showCards(e);
+      cardContentFirst = e.target.innerHTML;
+    } else {
+      showCards(e);
+      countMoves();
+      cardContentSecond = e.target.innerHTML;
+        if (cardContentFirst === cardContentSecond) {
+          matchCards();
+        } else {
+          hideCards();
           }
-
       }
-
-    }
-
+  }
 })
 
 
 //Include a modal popup once game is won
-let modal = document.getElementById('myModal');
-let usedMoves = document.getElementById('used-moves');
-let usedStars = document.getElementById('used-stars');
-let replayButton = document.getElementsByTagName('button')[0];
-let finishTime = document.getElementById('finish-time');
+const modal = document.getElementById('myModal');
+const usedMoves = document.getElementById('used-moves');
+const usedStars = document.getElementById('used-stars');
+const replayButton = document.getElementsByTagName('button')[0];
+const finishTime = document.getElementById('finish-time');
 
 function openPopup() {
-    let finishCounter = document.getElementById("count-time").innerHTML;
-    modal.style.display = "block";
-    usedMoves.textContent = clicks;
-    usedStars.textContent = starCount;
-    finishTime.textContent = finishCounter;
+  let finishCounter = document.getElementById("count-time").innerHTML;
+  modal.style.display = "block";
+  usedMoves.textContent = clicks;
+  usedStars.textContent = starCount;
+  finishTime.textContent = finishCounter;
 }
 
 replayButton.addEventListener('click', function() {
@@ -181,12 +168,12 @@ replayButton.addEventListener('click', function() {
 
 
 //Run functions to include timer into the game
-let countDownDate = localStorage.getItem('startDate');
+let countDownDate = new Date();
 if (countDownDate) {
-    countDownDate = new Date(countDownDate);
+  countDownDate = new Date(countDownDate);
   } else {
-      countDownDate = new Date();
-      localStorage.setItem('startDate', countDownDate);
+    countDownDate = new Date();
+    localStorage.setItem('startDate', countDownDate);
 }
 
 var x = setInterval(function() {
