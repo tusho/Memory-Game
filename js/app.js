@@ -1,4 +1,4 @@
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle function
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
@@ -12,7 +12,7 @@ function shuffle(array) {
 }
 
 
-//Pull card class names into an Array
+//Exchange the entire deck of cards by exchanging CSS classes
 let myArray = [];
 
 const myCards = document.getElementById('deck').getElementsByTagName('i');
@@ -20,7 +20,6 @@ for (let i = 0; i < myCards.length; i++) {
   myArray[i] = (myCards[i].className);
 }
 
-//Function to change the deck by exchanging CSS classes
 function changeDecks() {
   shuffle(myArray);
   for (let j=0; j < myCards.length; j++) {
@@ -29,7 +28,7 @@ function changeDecks() {
 }
 
 
-//Change colors of Stars
+//Change the star count
 const myStars = document.getElementById('stars').getElementsByTagName('i');
 let starCount = 3;
 
@@ -53,7 +52,8 @@ function changeStars () {
   }
 }
 
-//Function to count Moves
+
+//Function to count number of moves
 const myMoves = document.getElementById('moves');
 
 function countMoves () {
@@ -75,6 +75,7 @@ restart.addEventListener('click', function() {
   resetTimer();
 });
 
+
 //Function to reset / close all Cards
 function closeAllCards () {
     for (l=0; l < myDeck.children.length; l++) {
@@ -82,7 +83,8 @@ function closeAllCards () {
     }
 }
 
-//Functions to show, close cards or change color of matched classes
+
+//Functions to show, close cards or change color of matched cards
 let cardsOpenShow = document.getElementsByClassName('card open show');
 let matchingCards = 0;
 
@@ -105,9 +107,10 @@ function matchCards () {
 function hideCards () {
   Array.from(document.getElementsByClassName('card open show')).forEach(function(item) {
    item.classList.add('animation');
-   setTimeout(function(){item.className = 'card';}, 2000);
+   setTimeout(function(){item.className = 'card';}, 1000);
     });
 }
+
 
 //Event Listener for clicking the cards
 const myDeck = document.getElementById('deck');
@@ -127,6 +130,7 @@ myDeck.addEventListener('click', function(e) {
         cardContentFirst = e.target.innerHTML;
 
       } else {
+
         showCards(e);
         cardContentSecond = e.target.innerHTML;
 
@@ -149,7 +153,7 @@ myDeck.addEventListener('click', function(e) {
 })
 
 
-//Modal Popup
+//Include a modal popup once game is won
 let modal = document.getElementById('myModal');
 let usedMoves = document.getElementById('used-moves');
 let usedStars = document.getElementById('used-stars');
@@ -177,15 +181,8 @@ replayButton.addEventListener('click', function() {
   modal.style.display = "none";
 })
 
-//Run a shuffle once document is loaded
-window.onload = function () {
-  changeDecks();
-  resetStars();
-  resetTimer();
-}
 
-
-//Timer Function
+//Run functions to include timer into the game
 let countDownDate = localStorage.getItem('startDate');
 if (countDownDate) {
     countDownDate = new Date(countDownDate);
@@ -205,4 +202,12 @@ var x = setInterval(function() {
 function resetTimer() {
   countDownDate = new Date();
   localStorage.setItem('startDate', countDownDate);
+}
+
+
+//Run a shuffle once document is loaded
+window.onload = function () {
+  changeDecks();
+  resetStars();
+  resetTimer();
 }

@@ -75,9 +75,15 @@ h1 {
 
 .animation {
   -webkit-animation-name: myRotation; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
   animation-name: myRotation;
-  animation-duration: 2s;
+  animation-duration: 1s;
+}
+
+/* Standard syntax */
+@keyframes myRotation {
+  from {transform: rotateY(0); background: #02b3e4;}
+  to {transform: rotateY(360deg); background: red;}
 }
 
 /* Safari 4.0 - 8.0 */
@@ -86,11 +92,6 @@ h1 {
     to {transform: rotateY(360deg); background: red;}
 }
 
-/* Standard syntax */
-@keyframes myRotation {
-  from {transform: rotateY(0); background: #02b3e4;}
-  to {transform: rotateY(360deg); background: red;}
-}
 
 .deck .card.show {
     font-size: 33px;
@@ -103,8 +104,9 @@ h1 {
 }
 
 
- /* Styles for the Score Panel */
-
+/*
+ * Styles for the Score Panel
+ */
 
 .score-panel {
     text-align: left;
@@ -137,8 +139,9 @@ h1 {
 }
 
 
-
-/* Modal Popup */
+/*
+ * Styles for the Modal Popup
+ */
 
 #myModal {
   display: none;
@@ -150,25 +153,30 @@ h1 {
     font-family: 'Coda', cursive;
     text-align: center;
     top: 30%;
-    left: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     width: 60%;
-    height: 50%;
+    max-width: 550px;
+    height: auto;
     background-color: #fefefe;
     margin-left: auto;
     margin-right: auto;
-    padding: 30px 10px 10px 10px;
+    padding: 30px 20px 20px 20px;
     border-radius: 15px;
     border: solid 10px white;
     -webkit-animation-name: myWin; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
     animation-name: myWin;
-    animation-duration: 2s;
+    animation-duration: 1s;
 }
 
 .checkbox {
   padding-top: 5px;
-  height: 25%;
+  height: 4em;
 }
+
 .modal-content h1 {
   font-weight: bold;
 }
@@ -189,14 +197,14 @@ h1 {
   background: #66CDAA;
 }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes myWin {
-    from {transform: rotateY(0);}
-    to {transform: rotateY(360deg);}
-}
-
 /* Standard syntax */
 @keyframes myWin {
-  from {transform: rotateY(0);}
-  to {transform: rotateY(360deg);}
+  from {transform: scaleX(0);}
+  to {transform: scaleY(1);}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes myWin {
+  from {transform: scaleX(0);}
+  to {transform: scaleY(1);}
 }
