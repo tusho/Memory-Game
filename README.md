@@ -1,11 +1,11 @@
-# Memory Game Project
+Memory Game Project
 
 A classic game of card matching / memory.
 
-##Memory Game Logic:
+Memory Game Logic:
 The game randomly shuffles the cards. A user wins once all cards have successfully been matched.
 
-##Game includes:
+Game includes:
 - Congratulations popup
 - Restart button
 - Star Rating
