@@ -40,15 +40,12 @@ function resetStars() {
 
 function changeStars () {
   let successfulClicks = clicks - matchingCards;
-  if (successfulClicks >= 10 && successfulClicks < 20) {
+  if (successfulClicks >= 20 && successfulClicks < 28) {
     myStars[2].style.color = 'black';
     starCount = 2;
-  } else if (successfulClicks >=20 && successfulClicks < 30) {
+  } else if (successfulClicks >=28) {
     myStars[1].style.color = 'black'
     starCount = 1;
-  } else if (successfulClicks >=30) {
-    myStars[0].style.color = 'black'
-    starCount = 0;
   }
 }
 
@@ -57,7 +54,8 @@ function changeStars () {
 const myMoves = document.getElementById('moves');
 
 function countMoves () {
-  moves.textContent = clicks;
+  secondClick = Math.floor(clicks/2);
+  moves.textContent = secondClick;
 }
 
 
@@ -122,7 +120,6 @@ myDeck.addEventListener('click', function(e) {
 
     if (e.target.nodeName === 'LI') {
       clicks += 1;
-      countMoves();
       changeStars();
 
       if (clicks%2 === 1) {
@@ -132,6 +129,7 @@ myDeck.addEventListener('click', function(e) {
       } else {
 
         showCards(e);
+        countMoves();
         cardContentSecond = e.target.innerHTML;
 
           if (cardContentFirst === cardContentSecond) {
