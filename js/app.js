@@ -53,7 +53,7 @@ function changeStars () {
 const myMoves = document.getElementById('moves');
 
 function countMoves () {
-  secondClick = Math.floor(clicks/2);
+  let secondClick = Math.floor(clicks/2);
   moves.textContent = secondClick;
 }
 
