@@ -25,6 +25,6 @@ The app is built with the following code dependencies:
 1. Font Coda
 2. Font Awesome
 
-## Check it out for yoruself
+## Check it out yourself
 
 https://tusho.github.io/Memory-Game/index.html
