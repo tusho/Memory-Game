@@ -3,12 +3,12 @@
 A classic game of card matching / memory.
 
 
-##Memory Game Logic:
+## Memory Game Logic:
 
 The game randomly shuffles the cards. A user wins once all cards have successfully been matched.
 
 
-##Game includes:
+## Game includes:
 
 - Congratulations popup
 - Restart button
@@ -23,3 +23,7 @@ The app is built with the following code dependencies:
 
 1. Font Coda
 2. Font Awesome
+
+## Check it out for yoruself
+
+https://tusho.github.io/Memory-Game/index.html
