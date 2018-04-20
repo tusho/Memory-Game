@@ -3,7 +3,8 @@
 A classic game of card matching / memory.
 
 
-## Memory Game Logic:
+
+## Game Logic:
 
 The game randomly shuffles the cards. A user wins once all cards have successfully been matched.
 
