@@ -119,23 +119,26 @@ let cardContentFirst = 0;
 let cardContentSecond = 0;
 
 myDeck.addEventListener('click', function(e) {
-  if (e.target.nodeName === 'LI') {
-    clicks += 1;
-    changeStars();
-    if (clicks%2 === 1) {
-      showCards(e);
-      cardContentFirst = e.target.innerHTML;
-    } else {
-      showCards(e);
-      countMoves();
-      cardContentSecond = e.target.innerHTML;
-        if (cardContentFirst === cardContentSecond) {
-          matchCards();
-        } else {
-          hideCards();
-          }
-      }
-  }
+  // let clickedCard = e.target.className;
+  if (e.target.className === 'card open show' || e.target.className === 'card match') {
+    return;
+  } else if (e.target.nodeName === 'LI') {
+      clicks += 1;
+      changeStars();
+      if (clicks%2 === 1) {
+        showCards(e);
+        cardContentFirst = e.target.innerHTML;
+      } else {
+        showCards(e);
+        countMoves();
+        cardContentSecond = e.target.innerHTML;
+          if (cardContentFirst === cardContentSecond) {
+            matchCards();
+          } else {
+            hideCards();
+            }
+        }
+    }
 })
 
 
@@ -149,7 +152,7 @@ const finishTime = document.getElementById('finish-time');
 function openPopup() {
   let finishCounter = document.getElementById("count-time").innerHTML;
   modal.style.display = "block";
-  usedMoves.textContent = clicks;
+  usedMoves.textContent = clicks/2;
   usedStars.textContent = starCount;
   finishTime.textContent = finishCounter;
 }
